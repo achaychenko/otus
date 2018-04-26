@@ -4,25 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.otus.achaychenko</groupId>
-    <artifactId>L02.1</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.9</maven.compiler.source>
-        <maven.compiler.target>1.9</maven.compiler.target>
-        <com.google.guava.version>23.0</com.google.guava.version>
-        <my.variable>42</my.variable>
-    </properties>
-    
+    <groupId>ru.x5.jira</groupId>
+    <artifactId>ObjectSizeFetcherAgent</artifactId>
+    <version>1</version>
     <build>
         <finalName>${project.name}</finalName>
-
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.0.0</version>
+
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -34,7 +25,7 @@
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                         <manifestEntries>
-                            <Premain-Class>ru.otus.achaychenko.ObjectSizeFetcher</Premain-Class>
+                            <Premain-Class>ObjectSizeFetcher</Premain-Class>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -51,9 +42,8 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
-
     </build>
-    
+
+
 </project>
