@@ -7,10 +7,30 @@
     <groupId>ru.x5.jira</groupId>
     <artifactId>ObjectSizeFetcherAgent</artifactId>
     <version>1</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
+    </properties>
     <build>
         <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>ru.otus.achaychenko.tester.AgentTester</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Premain-Class>ru.otus.achaychenko.agent.AgentMemoryCounter</Premain-Class>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!--plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
 
@@ -23,25 +43,26 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <mainClass>ru.otus.achaychenko.tester.AgentTester</mainClass>
                         </manifest>
                         <manifestEntries>
-                            <Premain-Class>ObjectSizeFetcher</Premain-Class>
+                            <Premain-Class>ru.otus.achaychenko.agent.AgentMemoryCounter</Premain-Class>
                         </manifestEntries>
                     </archive>
                 </configuration>
                 <executions>
                     <execution>
                         <id>make-assembly</id>
-                        <!-- this is used for inheritance merges -->
+
                         <phase>package</phase>
-                        <!-- append to the packaging phase. -->
+
                         <goals>
                             <goal>single</goal>
-                            <!-- goals == mojos -->
+
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin-->
         </plugins>
     </build>
 
