@@ -5,13 +5,15 @@ import ru.otus.achaychenko.agent.AgentMemoryCounter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.lang.Integer;
 
 public class AgentTester {
     public static void main(String[] args) {
-
-        printObjectSize((byte)2);
-        printObjectSize(5L);
-        printObjectSize(5.4);
+        Byte a = 3;
+        System.out.println(a.SIZE);
+        printObjectSize((byte)4);
+        printObjectSize(a);
+        printObjectSize(5.7);
         printObjectSize(5.4f);
         printObjectSize(new Object());
         printObjectSize("d");
