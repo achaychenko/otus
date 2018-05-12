@@ -22,10 +22,10 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.achaychenko.tester.AgentTester</mainClass>
+                            <mainClass>ru.otus.achaychenko.colls.tester.AgentTester</mainClass>
                         </manifest>
                         <manifestEntries>
-                            <Premain-Class>ru.otus.achaychenko.agent.AgentMemoryCounter</Premain-Class>
+                            <Premain-Class>ru.otus.achaychenko.colls.agent.AgentMemoryCounter</Premain-Class>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -43,10 +43,10 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            <mainClass>ru.otus.achaychenko.tester.AgentTester</mainClass>
+                            <mainClass>AgentTester</mainClass>
                         </manifest>
                         <manifestEntries>
-                            <Premain-Class>ru.otus.achaychenko.agent.AgentMemoryCounter</Premain-Class>
+                            <Premain-Class>AgentMemoryCounter</Premain-Class>
                         </manifestEntries>
                     </archive>
                 </configuration>

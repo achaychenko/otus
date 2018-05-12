@@ -1,6 +1,6 @@
-package ru.otus.achaychenko.tester;
+package ru.otus.achaychenko.colls.tester;
 
-import ru.otus.achaychenko.agent.AgentMemoryCounter;
+import ru.otus.achaychenko.colls.agent.AgentMemoryCounter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

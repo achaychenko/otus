@@ -1,3 +1,3 @@
 запуск командой - 
 
-java -javaagent:ObjectSizeFetcherAgent.jar ru.otus.achaychenko.tester.AgentTester
+java -javaagent:ObjectSizeFetcherAgent.jar AgentTester

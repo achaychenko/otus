@@ -1,4 +1,4 @@
-package ru.otus.achaychenko.arrayCopyTutor;
+package ru.otus.achaychenko.colls.arrayCopyTutor;
 
 public class Main {
     public static void main(String[] args) {

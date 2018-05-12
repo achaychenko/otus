@@ -5,20 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.otus.achaychenko</groupId>
-    <artifactId>ArrayCopyTutor</artifactId>
+    <artifactId>L3.1HW2</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.9</maven.compiler.source>
         <maven.compiler.target>1.9</maven.compiler.target>
     </properties>
-    <dependencies>
+
+    <!--dependencies>
         <dependency>
-            <groupId>junit</groupId>
+            <groupId></groupId>
             <artifactId>junit</artifactId>
             <version>4.4</version>
         </dependency>
-    </dependencies>
+    </dependencies-->
     <build>
         <finalName>${project.name}</finalName>
         <plugins>
@@ -29,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.achaychenko.colls.arrayCopyTutor.Main</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -37,4 +39,5 @@
         </plugins>
     </build>
 
+    
 </project>

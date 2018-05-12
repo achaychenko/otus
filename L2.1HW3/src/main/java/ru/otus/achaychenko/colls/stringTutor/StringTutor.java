@@ -1,4 +1,4 @@
-package ru.otus.achaychenko.stringTutor;
+package ru.otus.achaychenko.colls.stringTutor;
 
 import static org.junit.Assert.*;
 import java.util.regex.Matcher;

@@ -1,4 +1,4 @@
-package ru.otus.achaychenko.agent;
+package ru.otus.achaychenko.colls.agent;
 
 import java.lang.instrument.Instrumentation;
 
