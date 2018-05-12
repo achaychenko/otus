@@ -49,7 +49,7 @@ public class StringTutor  {
 	 *  и начинаются с большой буквы
 	 */
 	public boolean checkGreeting(String greeting) {
-		Pattern p = Pattern.compile("(^Привет[\\s,]{0,2}[A-Я][а-я]{2,}\\s[A-Я][а-я]{2,}\\!$)");
+		Pattern p = Pattern.compile("(^Привет[\\s,]{0,2}[A-Я][а-я]{2,}\\s[A-Я][а-я]{2,}\\s?\\!$)");
 		Matcher m = p.matcher(greeting);
 		return m.matches();
 
@@ -72,7 +72,7 @@ public class StringTutor  {
 				checkGreeting("Привет, Куй Ли!"));
 		assertFalse("Должны быть указаны и имя, и фамилия",
 				checkGreeting("Привет, Петр!"));
-		assertFalse("Первая буква имени должна быть заглавной", 
+		assertFalse("Первая буква имени должна быть заглавной",
 				checkGreeting("Привет, петр Первый!"));
 		assertFalse("Первая буква фамилии должна быть заглавной",
 				checkGreeting("Привет, Петр первый!"));
