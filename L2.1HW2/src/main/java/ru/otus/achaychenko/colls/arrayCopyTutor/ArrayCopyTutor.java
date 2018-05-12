@@ -56,7 +56,6 @@ public class ArrayCopyTutor {
             throw new ArrayIndexOutOfBoundsException();
         }
         System.arraycopy(animals, position+1, animals, position, animals_size-position-1);
-        animals_capacity-=1;
         animals_size-=1;
 
     }
