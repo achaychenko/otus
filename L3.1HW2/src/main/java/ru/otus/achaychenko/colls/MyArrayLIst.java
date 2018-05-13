@@ -2,12 +2,25 @@ package ru.otus.achaychenko.colls;
 
 import java.util.*;
 
-class MyArrayList<T> implements List<T>{
+class MyArrayList<T> extends MyComparator<T> implements List<T>, Iterator<T> {
+    private Object[] arr;
+    private int size;
+    private int pos = 0;
 
+    MyArrayList(int sze){
+        if(sze > 0){
+            size = sze;
+        }else {
+            size = 0;
+        }
+
+        arr = new Object[10];
+
+    }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
@@ -22,12 +35,13 @@ class MyArrayList<T> implements List<T>{
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        Object[] copy = Arrays.copyOf(arr, size);
+        return (Iterator<T>) Arrays.asList(copy).iterator();
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return Arrays.copyOf(arr, size);
     }
 
     @Override
@@ -37,7 +51,16 @@ class MyArrayList<T> implements List<T>{
 
     @Override
     public boolean add(T t) {
-        return false;
+        if (size >= arr.length) {
+            // make a bigger array and copy over the elements
+            @SuppressWarnings("unchecked")
+            T[] bigger = (T[]) new Object[arr.length * 2];
+            System.arraycopy(arr, 0, bigger, 0, arr.length);
+            arr = bigger;
+        }
+        arr[size] = t;
+        size++;
+        return true;
     }
 
     @Override
@@ -52,7 +75,11 @@ class MyArrayList<T> implements List<T>{
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        boolean flag = true;
+        for (T element: c) {
+            flag &= add(element);
+        }
+        return flag;
     }
 
     @Override
@@ -77,17 +104,33 @@ class MyArrayList<T> implements List<T>{
 
     @Override
     public T get(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        return (T) arr[index];
     }
 
     @Override
     public T set(int index, T element) {
-        return null;
+        T old = get(index);
+        arr[index] = element;
+        return old;
     }
 
     @Override
     public void add(int index, T element) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        // add the element to get the resizing
+        add(element);
 
+        // shift the elements
+        for (int i=size-1; i>index; i--) {
+            arr[i] = arr[i-1];
+        }
+        // put the new one in the right place
+        arr[index] = element;
     }
 
     @Override
@@ -118,5 +161,20 @@ class MyArrayList<T> implements List<T>{
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
+    }
+
+    @Override
+    public int compare(T o1, T o2) {
+        return (int)o1 - (int)o2;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return pos < arr.length;
+    }
+
+    @Override
+    public T next() {
+        return (T) arr[pos++];
     }
 }
