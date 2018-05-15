@@ -164,11 +164,6 @@ class MyArrayList<T> extends MyComparator<T> implements List<T>, Iterator<T> {
     }
 
     @Override
-    public int compare(T o1, T o2) {
-        return (int)o1 - (int)o2;
-    }
-
-    @Override
     public boolean hasNext() {
         return pos < arr.length;
     }

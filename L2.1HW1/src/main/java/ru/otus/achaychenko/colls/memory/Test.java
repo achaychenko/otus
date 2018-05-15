@@ -3,12 +3,12 @@ package ru.otus.achaychenko.colls.memory;
 
 class LotsOfBytes
 {
-
+    StringBuilder sb = new StringBuilder();
 }
 
 class LotsOfStr
 {
-    String str = new String("");
+    String str = new String(new char[0]);
 }
 
 class LotsOfArrs
@@ -18,16 +18,14 @@ class LotsOfArrs
 
 public class Test
 {
-    private static final int SIZE = 1000000;
+    private static final int SIZE = 9000000;
 
     public static void main(String[] args) throws Exception
     {
-        LotsOfBytes[] first = new LotsOfBytes[SIZE];
-        LotsOfStr[] third = new LotsOfStr[SIZE];
-        LotsOfArrs[] fourth = new LotsOfArrs[SIZE];
 
-
+//first
         System.gc();
+        LotsOfBytes[] first = new LotsOfBytes[SIZE];
         long startMem = getMemory();
 
         for (int i=0; i < SIZE; i++)
@@ -40,17 +38,21 @@ public class Test
 
         System.out.println ("Object: " + ((endMem-startMem) / ((double)SIZE)));
 
+//second
         System.gc();
+        LotsOfStr[] third = new LotsOfStr[SIZE];
         startMem = getMemory();
         for (int i=0; i < SIZE; i++)
         {
             third[i] = new LotsOfStr();
         }
-        System.gc();
         endMem = getMemory();
+        System.gc();
         System.out.println ("Empty String: " + ((endMem-startMem) / ((double)SIZE)));
 
+//third
         System.gc();
+        LotsOfArrs[] fourth = new LotsOfArrs[SIZE];
         startMem = getMemory();
         for (int i=0; i < SIZE; i++)
         {
