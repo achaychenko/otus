@@ -15,9 +15,9 @@ public class Main {
         Collections.addAll(myAL, 1, 2, 4, 5);
         System.out.println(myAL.size());
 
-        MyArrayList<Integer> myAl2 = new MyArrayList<>(10);
-        Collections.copy(myAl2, myAL);
-        System.out.println(myAl2.size());
+//        MyArrayList<Integer> myAl2 = new MyArrayList<>(10);
+//        Collections.copy(myAl2, myAL);
+//        System.out.println(myAl2.size());
 
         Collections.sort(myAL, new MyComparator<>());
         System.out.println(Arrays.toString(myAL.toArray()));

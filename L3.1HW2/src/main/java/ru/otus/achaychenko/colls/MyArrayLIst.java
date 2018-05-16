@@ -2,7 +2,7 @@ package ru.otus.achaychenko.colls;
 
 import java.util.*;
 
-class MyArrayList<T> extends MyComparator<T> implements List<T>, Iterator<T> {
+class MyArrayList<T> implements List<T>, Iterable<T>, Comparable<T>{
     private Object[] arr;
     private int size;
     private int pos = 0;
@@ -35,8 +35,25 @@ class MyArrayList<T> extends MyComparator<T> implements List<T>, Iterator<T> {
 
     @Override
     public Iterator<T> iterator() {
-        Object[] copy = Arrays.copyOf(arr, size);
-        return (Iterator<T>) Arrays.asList(copy).iterator();
+        return new Iterator<>() {
+            private Object[] currentData = arr;
+            private int pos = 0;
+
+            @Override
+            public boolean hasNext() {
+                return pos < currentData.length;
+            }
+
+            @Override
+            public T next() {
+                return (T) currentData[pos++];
+            }
+
+            @Override
+            public void remove() {
+                MyArrayList.this.remove(pos++);
+            }
+        };
     }
 
     @Override
@@ -164,12 +181,7 @@ class MyArrayList<T> extends MyComparator<T> implements List<T>, Iterator<T> {
     }
 
     @Override
-    public boolean hasNext() {
-        return pos < arr.length;
-    }
-
-    @Override
-    public T next() {
-        return (T) arr[pos++];
+    public int compareTo(T o) {
+        return 0;
     }
 }

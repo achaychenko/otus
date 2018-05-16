@@ -1,50 +1,37 @@
 package ru.otus.achaychenko.colls.memory;
 
-
-class LotsOfBytes
-{
-    StringBuilder sb = new StringBuilder();
-}
-
-class LotsOfStr
-{
-    String str = new String(new char[0]);
-}
-
-class LotsOfArrs
-{
-    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-}
+import java.util.Arrays;
 
 public class Test
 {
     private static final int SIZE = 9000000;
 
+
     public static void main(String[] args) throws Exception
     {
 
 //first
-        System.gc();
-        LotsOfBytes[] first = new LotsOfBytes[SIZE];
-        long startMem = getMemory();
 
+        System.gc();
+        Object[] first = new Object[SIZE];
+        long startMem = getMemory();
         for (int i=0; i < SIZE; i++)
         {
-            first[i] = new LotsOfBytes();
+            first[i] = new Object();
         }
-
         System.gc();
         long endMem = getMemory();
 
         System.out.println ("Object: " + ((endMem-startMem) / ((double)SIZE)));
 
 //second
+
         System.gc();
-        LotsOfStr[] third = new LotsOfStr[SIZE];
+        String[] second = new String[SIZE];
         startMem = getMemory();
         for (int i=0; i < SIZE; i++)
         {
-            third[i] = new LotsOfStr();
+            second[i] = new String(new char[0]);
         }
         endMem = getMemory();
         System.gc();
@@ -52,17 +39,22 @@ public class Test
 
 //third
         System.gc();
-        LotsOfArrs[] fourth = new LotsOfArrs[SIZE];
+        int[][] third = new int[SIZE][];
+
         startMem = getMemory();
-        for (int i=0; i < SIZE; i++)
-        {
-            fourth[i] = new LotsOfArrs();
+        for (int i=0; i < SIZE; i++){
+
+            third[i] = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
         }
-        System.gc();
         endMem = getMemory();
-        System.out.println ("Array: " + ((endMem-startMem) / ((double)SIZE)));
+        System.gc();
 
+        System.out.println ("Array 10 ints: " + ((endMem-startMem) / ((double)SIZE)));
 
+        System.out.println(first.length);
+        System.out.println(second.length);
+        System.out.println(third.length);
     }
 
     private static long getMemory()
