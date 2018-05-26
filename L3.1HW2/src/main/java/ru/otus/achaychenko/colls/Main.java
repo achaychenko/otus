@@ -1,34 +1,36 @@
 package ru.otus.achaychenko.colls;
 
-import java.util.List;
-import java.util.Collections;
-import java.util.Iterator;
-
-import static javafx.scene.input.KeyCode.T;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-//        MyGeneric<Integer> intObj = new MyGeneric<>(1);
-//
-//        System.out.println(intObj.getValue());
-        MyArrayList<Integer> myAL = new MyArrayList<>();
-        MyArrayList<Integer> myAL2 = new MyArrayList<>();
+
+        MyArrayList<Integer> myAL = new MyArrayList<>(0);
+        MyArrayList<Integer> myAL2 = new MyArrayList<>(10);
+        System.out.println(myAL.size());
+        System.out.println(myAL2.size());
+
+
         myAL.add(1);
         myAL.add(2);
-        System.out.println(myAL.set(1, 44));
-//        Collections.addAll(myAL, 1, 2, 4, 5);
+        myAL.set(1, 5);
+
+        Collections.addAll(myAL, 1, 2, 4, 5);
 //
+        System.out.println(Arrays.toString(myAL.toArray()));
+        System.out.println(Arrays.toString(myAL2.toArray()));
+        Collections.copy(myAL2, myAL);
 //
-//        Collections.copy(myAL2, myAL);
+        System.out.println(Arrays.toString(myAL.toArray()));
+        System.out.println(Arrays.toString(myAL2.toArray()));
+//
+        System.out.println(myAL.size());
+        System.out.println(myAL2.size());
 
 
-//        MyArrayList<Integer> myAl2 = new MyArrayList<>();
-//        Collections.copy(myAl2, myAL);
-        System.out.println(myAL.toString());
-
-//        Collections.sort(myAL);
-//        System.out.println(Arrays.toString(myAL.toArray()));
+        Collections.sort(myAL);
+        System.out.println(Arrays.toString(myAL.toArray()));
 
 //        addAll(Collection<? super T> c, T... elements)
 //        static <T> void copy(List<? super T> dest, List<? extends T> src)
