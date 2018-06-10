@@ -2,10 +2,7 @@ package ru.otus.achaychenko.gc;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by tully.
@@ -23,10 +20,8 @@ class Benchmark implements BenchmarkMBean {
         System.out.println("Starting the loop");
         while (true) {
 
-            int youngCount = 0;
-            int youngTime = 0;
-            int oldCount = 0;
-            int oldTime = 0;
+            Map<String, Long> gcData = new HashMap<>();
+
 
             System.out.println(cycle++);
             int local = size;
@@ -45,25 +40,17 @@ class Benchmark implements BenchmarkMBean {
             System.out.println("Removed " + local + " objects.");
             for(GarbageCollectorMXBean mxBean : mxBeans){
                 //System.out.println(mxBean.getName() + " " + mxBean.getCollectionTime() +" " + mxBean.getCollectionCount());
-                if(mxBean.getName().equals("G1 Young Generation")){
-                    youngCount += mxBean.getCollectionCount();
-                    youngTime += mxBean.getCollectionTime();
-                }else if(mxBean.getName().equals("Old Generation")){
-                    oldCount += mxBean.getCollectionCount();
-                    oldTime += mxBean.getCollectionTime();
-                }
+
+                gcData.put(mxBean.getName().replace(" ", "_") + "_time", mxBean.getCollectionTime());
+                gcData.put(mxBean.getName().replace(" ", "_") + "count", mxBean.getCollectionCount());
+
 
             }
             if((System.currentTimeMillis() - startTime) > 60 * 1000){
-                System.out.println("youngCount: " + youngCount);
-                System.out.println("youngTime: " + youngTime);
-                System.out.println("oldCount: " + oldCount);
-                System.out.println("oldTime: " + oldTime);
                 startTime = System.currentTimeMillis();
-                youngCount = 0;
-                youngTime = 0;
-                oldCount = 0;
-                oldTime = 0;
+                System.out.println(gcData);
+                gcData.clear();
+
 
             }
         }

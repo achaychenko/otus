@@ -3,6 +3,8 @@ package ru.otus.achaychenko.gc;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import java.lang.management.ManagementFactory;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by tully.
@@ -42,6 +44,7 @@ import java.lang.management.ManagementFactory;
 
 public class Main {
     public static void main(String... args) throws Exception {
+
 
         System.out.println("Starting pid: " + ManagementFactory.getRuntimeMXBean().getName());
 
