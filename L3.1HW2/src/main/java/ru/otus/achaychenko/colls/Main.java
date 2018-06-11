@@ -4,6 +4,13 @@ import java.util.*;
 
 public class Main {
 
+    public static class MyComparator implements Comparator<Integer> {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o1 - o2;
+        }
+    }
+
     public static void main(String[] args) {
 
         MyArrayList<Integer> myAL = new MyArrayList<>(0);
@@ -28,6 +35,8 @@ public class Main {
         System.out.println(myAL.size());
         System.out.println(myAL2.size());
 
+        System.out.println("~~~~~~~~~~~~~~~~");
+        System.out.println(myAL.listIterator().hasNext());
 
         Collections.sort(myAL);
         System.out.println(Arrays.toString(myAL.toArray()));

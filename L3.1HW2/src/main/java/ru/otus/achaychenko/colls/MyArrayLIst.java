@@ -1,12 +1,9 @@
 package ru.otus.achaychenko.colls;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import javax.swing.text.html.HTMLDocument;
+import java.util.*;
 
-class MyArrayList<T> implements List<T>, Comparable<T>{
+class MyArrayList<T> implements List<T>{
     int size;                    // keeps track of the number of elements
     private T[] array;           // stores the elements
 
@@ -79,6 +76,11 @@ class MyArrayList<T> implements List<T>, Comparable<T>{
     }
 
     @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    @Override
     public boolean containsAll(Collection<?> collection) {
         for (Object element: collection) {
             if (!contains(element)) {
@@ -121,39 +123,57 @@ class MyArrayList<T> implements List<T>, Comparable<T>{
     }
 
 
-    @Override
-    public java.util.Iterator<T> iterator() {
-        return new ArrayListIterator();
+
+    private class MyListIterator<T> implements ListIterator<T> {
+    private int current = 0; // Current index
+
+
+    public boolean hasNext() {
+        return (current < size);
     }
 
-    @Override
-    public int compareTo(T o) {
-        return 0;
+
+    public T next() {
+        return (T) array[current++];
     }
-
-
-    int compare(T o1, T o2){
-        return (int) o2 - (int)o1;
-    }
-
-    private class ArrayListIterator  implements java.util.Iterator<T> {
-        private int current = 0; // Current index
 
         @Override
-        public boolean hasNext() {
-            return (current < size);
+        public boolean hasPrevious() {
+            return false;
         }
 
         @Override
-        public T next() {
-            return array[current++];
+        public T previous() {
+            return null;
         }
 
         @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public int previousIndex() {
+            return 0;
+        }
+
+
         public void remove() {
-            MyArrayList.this.remove(current);
+        MyArrayList.this.remove(current);
+    }
+
+        @Override
+        public void set(T t) {
+
+        }
+
+        @Override
+        public void add(T t) {
+
         }
     }
+
+
 
     @Override
     public int lastIndexOf(Object target) {
@@ -167,12 +187,9 @@ class MyArrayList<T> implements List<T>, Comparable<T>{
     }
 
     @Override
-    public ListIterator<T> listIterator() {
-        // make a copy of the array
-        T[] copy = Arrays.copyOf(array, size);
-        // make a list and return an iterator
-        return Arrays.asList(copy).listIterator();
-    }
+    public java.util.ListIterator<T> listIterator() {return  new MyListIterator();}
+
+
 
     @Override
     public ListIterator<T> listIterator(int index) {
@@ -239,7 +256,7 @@ class MyArrayList<T> implements List<T>, Comparable<T>{
     }
 
     @Override
-    public Object[] toArray() {
+    public T[] toArray() {
         return Arrays.copyOf(array, size);
     }
 
@@ -259,4 +276,5 @@ class MyArrayList<T> implements List<T>, Comparable<T>{
 
         return result.toString() + "]";
     }
+
 }
